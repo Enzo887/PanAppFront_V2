@@ -3,11 +3,12 @@ import {type Producto} from '../../types/producto.types'
 import { RenglonProducto } from './RenglonProducto'
 
 interface TablaProductoProps{
-    productos: Producto[]
+    productos: Producto[],
+    onEditar: (producto: Producto) => void
 }
 
 
-export function TablaProducto({productos}: TablaProductoProps){
+export function TablaProducto({productos, onEditar}: TablaProductoProps){
     return(
         <div className="rounded overflow-hidden">
             <Table striped bordered hover className='rounded'>
@@ -20,7 +21,7 @@ export function TablaProducto({productos}: TablaProductoProps){
                 </thead>
                 <tbody>
                     {productos.map(producto => (
-                        <RenglonProducto key={producto.id} producto={producto} />
+                        <RenglonProducto key={producto.id} producto={producto} onEditar={onEditar} />
                     ))}
                 </tbody>
             </Table>

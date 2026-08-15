@@ -4,10 +4,11 @@ import {type Producto} from '../types/producto.types'
 
 import {TablaProducto} from "../components/Tabla/TablaProducto";
 
-interface TablaProductoProps{
+interface AccordionProductosEliminadosProps{
     productos: Producto[]
+    onEditar: (producto: Producto) => void
 }
-export function AccordionProductosEliminados( {productos }:TablaProductoProps){
+export function AccordionProductosEliminados( {productos, onEditar}:AccordionProductosEliminadosProps){
     const productosInactivos = productos.filter(producto => !producto.activo)
     return(  
         <Accordion>
@@ -17,7 +18,7 @@ export function AccordionProductosEliminados( {productos }:TablaProductoProps){
                     <span className="badge bg-danger ms-2" id="contadorEliminados">{productosInactivos.length}</span>
                 </Accordion.Header>
                 <Accordion.Body>
-                    <TablaProducto productos={productosInactivos}/>
+                    <TablaProducto productos={productosInactivos} onEditar={onEditar}/>
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
